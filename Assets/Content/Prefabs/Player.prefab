@@ -169,7 +169,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e729e8c1428b60446b617e4f066b5813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
+  _movementSpeed: 10
   _acceleration: 0.05
   _friction: 0.05
   _rb: {fileID: 3891430777493214964}
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af6821e65c98134a854fe6f2d0d4186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   _bulletSpeed: 100
   _shootingSpeed: 250
   _repulse: 4
