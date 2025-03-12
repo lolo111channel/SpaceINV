@@ -634,7 +634,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07411665, y: 1.7807716, z: -9.987757}
+  m_LocalPosition: {x: 64.3, y: 9.8, z: -9.987757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1154,6 +1154,7 @@ GameObject:
   - component: {fileID: 1034382297}
   - component: {fileID: 1034382299}
   - component: {fileID: 1034382298}
+  - component: {fileID: 1034382300}
   m_Layer: 7
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -1345,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movement: {fileID: 0}
   Target: {fileID: 2005569916}
+  EnemyAttack: {fileID: 1034382300}
   _distanceNeedToChasing: 30
   _distaceNeedToAttack: 8
 --- !u!114 &1034382299
@@ -1364,7 +1366,23 @@ MonoBehaviour:
   _friction: 0.1
   _rb: {fileID: 1034382296}
   _rotationSpeed: 1
-  _rotationDisable: 0
+  _rotationDisable: 1
+  _dashSpeed: 100
+  _dashTime: 0.1
+--- !u!114 &1034382300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034382291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00234f59ac930444a60e37fa419e52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 5
+  _speedAttack: 1000
 --- !u!1001 &1051029847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2300,7 +2318,7 @@ Transform:
   m_GameObject: {fileID: 1963033191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07411665, y: 1.7807716, z: -9.987757}
+  m_LocalPosition: {x: 64.3, y: 9.8, z: -9.987757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2604,11 +2622,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3069889717703262791, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07411665
+      value: 64.3
       objectReference: {fileID: 0}
     - target: {fileID: 3069889717703262791, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7807716
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 3069889717703262791, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
       propertyPath: m_LocalPosition.z

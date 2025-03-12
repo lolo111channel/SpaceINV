@@ -10,10 +10,15 @@ namespace SpaceInv
         [HideInInspector] public Movement Movement;
         public Transform Target = null;
 
+        public EnemyAttackAbract EnemyAttack;
+
         [SerializeField] private float _distanceNeedToChasing = 25.0f;
         [SerializeField] private float _distaceNeedToAttack = 5.0f;
 
+
         private IAIState _state = new AIIdleState();
+        private float _currentAngle = 0.0f;
+
 
         public void ChangeState(IAIState newState)
         {
@@ -44,15 +49,15 @@ namespace SpaceInv
 
         private void FixedUpdate()
         {
-            if (Target != null)
+            if (Target != null && !Movement.IsDashStarted)
             {
                 Vector3 look = transform.InverseTransformPoint(Target.position);
                 float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
-
-                transform.Rotate(0, 0, angle);
+                _currentAngle = angle;
             }
 
 
+            transform.Rotate(0, 0, _currentAngle);
             _state.FixedProcess(this);
         }
 

@@ -7,8 +7,7 @@ namespace SpaceInv
     {
         public void FixedProcess(AI ai)
         {
-            ai.Movement.Move(Vector2.zero);
-            Debug.Log("ai attack");
+            ai.EnemyAttack.Attack();
         }
 
         public void Process(AI ai)

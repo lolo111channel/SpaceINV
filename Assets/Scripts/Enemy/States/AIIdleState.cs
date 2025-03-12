@@ -8,7 +8,7 @@ namespace SpaceInv
     {
         public void FixedProcess(AI ai)
         {
-       
+            ai.Movement.Move(Vector2.zero);
         }
 
         public void Process(AI ai)
