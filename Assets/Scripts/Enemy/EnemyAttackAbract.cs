@@ -16,6 +16,15 @@ namespace SpaceInv
 
         public virtual void Attack() { }
 
+        protected void TakeDamage(GameObject obj)
+        {
+            HealthComponent healthComponent = obj.GetComponent<HealthComponent>();
+            if (healthComponent != null)
+            {
+                healthComponent.TakeDamage(_damage);
+            }
+        }
+
 
         protected void AttackRegeneration()
         {
@@ -36,6 +45,11 @@ namespace SpaceInv
             ai = gameObject.GetComponent<AI>();
         }
 
+
+        protected void ResetAttackCooldownProgress()
+        {
+            _attackCooldownProgress = 0.0f;
+        }
 
     
     }

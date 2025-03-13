@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6862044495481509552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,8 @@ GameObject:
   - component: {fileID: 881289858252064106}
   - component: {fileID: 5848314699390624171}
   - component: {fileID: 2183981081565787692}
-  m_Layer: 0
+  - component: {fileID: 2019529429264283644}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -169,7 +170,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -247,6 +248,8 @@ MonoBehaviour:
   _rb: {fileID: 3891430777493214964}
   _rotationSpeed: 3
   _rotationDisable: 0
+  _dashSpeed: 25
+  _dashTime: 1
 --- !u!114 &881289858252064106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +298,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   MaxHealth: 10
+--- !u!114 &2019529429264283644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726531925192806057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbbaee9f03b366408817098ca28c6a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

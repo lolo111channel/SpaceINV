@@ -4,6 +4,9 @@ namespace SpaceInv
 {
     public class EnemyDashAttack : EnemyAttackAbract
     {
+
+
+
         public override void Attack()
         {
             if (_canAttack)
@@ -30,8 +33,21 @@ namespace SpaceInv
                 ai.Movement.Move(Vector2.zero);
             }
 
+            if (ai.State is AIAttackState && !ai.Movement.IsDashStarted)
+            {
+                AttackRegeneration();
 
-            AttackRegeneration();
+            }
+            else
+            {
+                ResetAttackCooldownProgress();
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            TakeDamage(collision.gameObject);
+            Debug.Log(collision.gameObject.name);
         }
     }
 

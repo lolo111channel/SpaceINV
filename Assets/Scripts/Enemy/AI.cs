@@ -16,20 +16,25 @@ namespace SpaceInv
         [SerializeField] private float _distaceNeedToAttack = 5.0f;
 
 
-        private IAIState _state = new AIIdleState();
+        public IAIState State { get; private set; } = new AIIdleState();
         private float _currentAngle = 0.0f;
 
 
         public void ChangeState(IAIState newState)
         {
-            _state.Stop(this);
-            _state = newState;
-            _state.Start(this);
+            State.Stop(this);
+            State = newState;
+            State.Start(this);
         }
 
         public bool IsAISeeTarget()
         {
-            return Vector2.Distance(transform.position, Target.position) <= _distanceNeedToChasing;
+            if (Target != null)
+            {
+                return Vector2.Distance(transform.position, Target.position) <= _distanceNeedToChasing;
+            }
+
+            return false;
         }
 
         public bool CanAIAttack()
@@ -44,7 +49,7 @@ namespace SpaceInv
 
         private void Update()
         {
-            _state.Process(this);
+            State.Process(this);
         }
 
         private void FixedUpdate()
@@ -58,7 +63,7 @@ namespace SpaceInv
 
 
             transform.Rotate(0, 0, _currentAngle);
-            _state.FixedProcess(this);
+            State.FixedProcess(this);
         }
 
     }
