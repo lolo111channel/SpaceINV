@@ -53,10 +53,20 @@ namespace SpaceInv
             _angle += angle * _rotationSpeed;
         }
 
+        public void SetRotation(float angle)
+        {
+            _angle = angle;
+        }
+
         public void SetMovementSpeed(float val)
         {
             _movementSpeed = val;
             _currentMovementSpeed = _movementSpeed;
+        }
+
+        public void ResetMovemnet()
+        {
+            _rb.linearVelocity = Vector2.zero;
         }
 
         private void Awake()

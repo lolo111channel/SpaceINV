@@ -29,6 +29,12 @@ namespace SpaceInv
                 bullet.Damage = _damage;
 
                 Vector2 rotatedDir = gameObject.transform.TransformDirection(Vector2.up);
+
+                float randomDirX = Random.Range(-0.5f, 0.5f);
+                float randomDirY = Random.Range(-0.5f, 0.5f);
+
+                rotatedDir = new Vector2(rotatedDir.x + randomDirX, rotatedDir.y + randomDirY);
+
                 _rb.linearVelocity = (rotatedDir * -1) * _repulse;
 
                 _canShoot = false;

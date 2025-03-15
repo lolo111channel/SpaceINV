@@ -47,7 +47,6 @@ namespace SpaceInv
         private void OnTriggerEnter2D(Collider2D collision)
         {
             TakeDamage(collision.gameObject);
-            Debug.Log(collision.gameObject.name);
         }
     }
 

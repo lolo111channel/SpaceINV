@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,17 +9,21 @@ namespace SpaceInv
     {
 
         [HideInInspector] public Movement Movement;
+        
         public Transform Target = null;
 
         public EnemyAttackAbract EnemyAttack;
+        public IAIState State { get; private set; } = new AIIdleState();
 
         [SerializeField] private float _distanceNeedToChasing = 25.0f;
         [SerializeField] private float _distaceNeedToAttack = 5.0f;
 
+        private HealthComponent _healthComponent;
 
-        public IAIState State { get; private set; } = new AIIdleState();
         private float _currentAngle = 0.0f;
 
+        private bool _isAIOff = false;
+        private float _isAIOffTime = 0.0f;
 
         public void ChangeState(IAIState newState)
         {
@@ -39,21 +44,50 @@ namespace SpaceInv
 
         public bool CanAIAttack()
         {
+            if (Target == null)
+            {
+                return false;
+            }
+
             return Vector2.Distance(transform.position, Target.position) <= _distaceNeedToAttack;
+        }
+        private void StopAI(int currentHealth)
+        {
+            Movement.ResetMovemnet();
+            _isAIOff = true;
         }
 
         private void OnEnable()
         {
             Movement = GetComponent<Movement>();
+            _healthComponent = GetComponent<HealthComponent>();
+
+            _healthComponent.HealthChanged += StopAI;
         }
+
 
         private void Update()
         {
+            if (_isAIOff)
+            {
+                _isAIOffTime += Time.deltaTime;
+                if (_isAIOffTime > 2.0f)
+                {
+                    _isAIOff = false;
+                }
+                return;
+            }
+
             State.Process(this);
         }
 
         private void FixedUpdate()
         {
+            if (_isAIOff)
+            {
+                return;
+            }
+
             if (Target != null && !Movement.IsDashStarted)
             {
                 Vector3 look = transform.InverseTransformPoint(Target.position);
