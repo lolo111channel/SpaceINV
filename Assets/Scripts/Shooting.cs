@@ -13,12 +13,19 @@ namespace SpaceInv
         [SerializeField] private Transform _bulletSpawn;
         [SerializeField] private Rigidbody2D _rb;
 
+        [SerializeField] private bool _setManuallyCanShoot = false; 
+        
         private bool _canShoot = true;
         private float _canShootProgress = 0.0f;
         private float _canShootProgressMax = 100.0f;
 
         public void Shoot()
         {
+            if (_setManuallyCanShoot)
+            {
+                _canShoot = true;
+            }
+
             if (_canShoot)
             {
             

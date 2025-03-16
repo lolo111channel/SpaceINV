@@ -30,6 +30,7 @@ namespace SpaceInv
 
         protected void AttackRegeneration()
         {
+            Debug.Log(_attackCooldownProgress);
             if (!_canAttack)
             {
                 _cooldownBeforeNextAttackTime += Time.deltaTime;

@@ -16,7 +16,7 @@ namespace SpaceInv
         public void TakeDamage(int value)
         {
             Health -= value;
-            HealthChanged?.Invoke(value);
+            HealthChanged?.Invoke(Health);
 
             if (Health <= 0)
             {
