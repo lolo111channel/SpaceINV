@@ -49,6 +49,23 @@ namespace SpaceInv
                 newDir = newDir.normalized;
                 _dir = newDir;
             }
+
+
+            if (collision.gameObject.tag == "Player")
+            {
+                HealthComponent health = collision.gameObject.GetComponent<HealthComponent>();
+                Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if (health != null && rb != null)
+                {
+                    int damage = Mathf.RoundToInt(rb.linearVelocity.x + rb.linearVelocity.y) / 2;
+                    if (damage < 0)
+                    {
+                        damage = damage * -1;
+                    }
+                    Debug.Log(damage);
+                    health.TakeDamage(damage);
+                }
+            }
         }
     }
 }
