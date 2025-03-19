@@ -37,8 +37,8 @@ namespace SpaceInv
 
                 Vector2 rotatedDir = gameObject.transform.TransformDirection(Vector2.up);
 
-                float randomDirX = Random.Range(-0.5f, 0.5f);
-                float randomDirY = Random.Range(-0.5f, 0.5f);
+                float randomDirX = 0; //Random.Range(-0.5f, 0.5f);
+                float randomDirY = 0; //Random.Range(-0.5f, 0.5f);
 
                 rotatedDir = new Vector2(rotatedDir.x + randomDirX, rotatedDir.y + randomDirY);
 
