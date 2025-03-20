@@ -28,7 +28,7 @@ namespace SpaceInv
             _moveInput.action.started += Move;
             _moveInput.action.canceled += Move;
 
-            _shootInput.action.performed += Shoot;
+
         }
 
         private void Shoot(InputAction.CallbackContext context)
@@ -49,6 +49,15 @@ namespace SpaceInv
             else if (context.canceled)
             {
                 _dir = Vector2.zero;
+            }
+        }
+
+        private void Update()
+        {
+            float shootInputVal = _shootInput.action.ReadValue<float>();
+            if (shootInputVal > 0.0f)
+            {
+                _shooting.Shoot();
             }
         }
 

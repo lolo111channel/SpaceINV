@@ -37,12 +37,13 @@ namespace SpaceInv
 
                 Vector2 rotatedDir = gameObject.transform.TransformDirection(Vector2.up);
 
-                float randomDirX = 0; //Random.Range(-0.5f, 0.5f);
-                float randomDirY = 0; //Random.Range(-0.5f, 0.5f);
 
-                rotatedDir = new Vector2(rotatedDir.x + randomDirX, rotatedDir.y + randomDirY);
+                rotatedDir = (rotatedDir * -1) * _repulse;
+                Debug.Log(rotatedDir);
+                Debug.Log(_rb.linearVelocity);
+                Debug.Log(new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y));
 
-                _rb.linearVelocity = (rotatedDir * -1) * _repulse;
+                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y);
 
                 _canShoot = false;
             }

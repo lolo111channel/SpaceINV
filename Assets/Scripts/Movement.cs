@@ -8,6 +8,7 @@ namespace SpaceInv
 
 
         [SerializeField] private float _movementSpeed = 10.0f;
+        [SerializeField] private float _maxMovementSpeed = 100.0f;
         [SerializeField] private float _acceleration = 0.1f;
         [SerializeField] private float _friction = 0.1f;
         [SerializeField] private Rigidbody2D _rb;
@@ -26,6 +27,7 @@ namespace SpaceInv
 
         public void Move(Vector2 dir)
         {
+           
             Vector2 rotatedDir = gameObject.transform.TransformDirection(dir * _currentMovementSpeed);
             rotatedDir = rotatedDir.normalized;
             if (dir != Vector2.zero)
@@ -88,11 +90,21 @@ namespace SpaceInv
                 }
                 
             }
+
+           
         }
 
         private void FixedUpdate()
         {
-            _rb.linearVelocity = _currentLinear;
+            Vector2 linearVel = _currentLinear;
+            if ((Mathf.Abs(linearVel.x) + Mathf.Abs(linearVel.y)) > _maxMovementSpeed)
+            {
+                Vector2 normalizedDir = _rb.linearVelocity.normalized;
+                
+                linearVel = normalizedDir * _maxMovementSpeed;
+            }
+
+            _rb.linearVelocity = linearVel;
 
             if (!_rotationDisable)
             {
