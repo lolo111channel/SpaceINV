@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 35
-  _maxMovementSpeed: 15
+  _maxMovementSpeed: 60
   _acceleration: 0.05
   _friction: 0.005
   _rb: {fileID: 3891430777493214964}
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _bulletSpeed: 100
-  _shootingSpeed: 250
-  _repulse: 10
+  _shootingSpeed: 500
+  _repulse: 3
   _bulletPrefab: {fileID: 8939211464493416779, guid: f32d31b84b842d146ab6b0a74f2c02e4, type: 3}
   _bulletSpawn: {fileID: 6862044495481509552}
   _rb: {fileID: 3891430777493214964}
