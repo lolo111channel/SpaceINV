@@ -4198,6 +4198,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4057563294451634281, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
+      propertyPath: _fuelLossRate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057563294451634281, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
+      propertyPath: _fuelRegenerationSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5726531925192806057, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
       propertyPath: m_Name
       value: Player
