@@ -6,17 +6,20 @@ namespace SpaceInv
     {
         public int Damage = 1;
         public float BulletSpeed;
-        private Movement _movement;
+        public Vector2 Dir = new();
+        private Rigidbody2D _rb;
 
         private void OnEnable()
         {
-            _movement = GetComponent<Movement>();
-            _movement.SetMovementSpeed(BulletSpeed);
+
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
         {
-            _movement.Move(Vector2.up);
+            //_movement.Move(Vector2.up);
+            _rb.linearVelocity = Dir * BulletSpeed;
+           
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

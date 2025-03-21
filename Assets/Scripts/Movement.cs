@@ -7,6 +7,9 @@ namespace SpaceInv
         public bool IsDashStarted { get; private set; } = false;
 
 
+        public delegate void ObjectIsMoving();
+        public event ObjectIsMoving OnObjectIsMoving;
+
         [SerializeField] private float _movementSpeed = 10.0f;
         [SerializeField] private float _maxMovementSpeed = 100.0f;
         [SerializeField] private float _acceleration = 0.1f;
@@ -25,13 +28,16 @@ namespace SpaceInv
         private float _currentMovementSpeed = 1.0f;
         private float _dashProgressToStop = 0.0f;
 
+
         public void Move(Vector2 dir)
         {
            
-            Vector2 rotatedDir = gameObject.transform.TransformDirection(dir * _currentMovementSpeed);
+            Vector2 rotatedDir = gameObject.transform.TransformDirection(dir);
             rotatedDir = rotatedDir.normalized;
+
             if (dir != Vector2.zero)
             {
+                OnObjectIsMoving?.Invoke();
                 _currentLinear.x = Mathf.Lerp(_rb.linearVelocity.x, rotatedDir.x * _currentMovementSpeed, _acceleration);
                 _currentLinear.y = Mathf.Lerp(_rb.linearVelocity.y, rotatedDir.y * _currentMovementSpeed, _acceleration);
                 return;
@@ -69,6 +75,11 @@ namespace SpaceInv
         public void ResetMovemnet()
         {
             _rb.linearVelocity = Vector2.zero;
+        }
+
+        public Vector2 GetCurrentDir(Vector2 dir)
+        {
+            return gameObject.transform.TransformDirection(dir);
         }
 
         private void Awake()

@@ -31,18 +31,23 @@ namespace SpaceInv
             
                 GameObject go = Instantiate(_bulletPrefab, _bulletSpawn.position, gameObject.transform.rotation, null);
 
+               
+
                 Bullet bullet = go.GetComponent<Bullet>();
                 bullet.BulletSpeed = _bulletSpeed;
                 bullet.Damage = _damage;
+
+                Movement movement = gameObject.GetComponent<Movement>();
+                if (movement != null)
+                { 
+                    bullet.Dir = movement.GetCurrentDir(Vector2.up);
+                }
 
                 Vector2 rotatedDir = gameObject.transform.TransformDirection(Vector2.up);
 
 
                 rotatedDir = (rotatedDir * -1) * _repulse;
-                Debug.Log(rotatedDir);
-                Debug.Log(_rb.linearVelocity);
-                Debug.Log(new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y));
-
+          
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y);
 
                 _canShoot = false;
@@ -60,6 +65,8 @@ namespace SpaceInv
                     _canShootProgress = 0.0f;
                 }
             }
+
+
         }
     }
 

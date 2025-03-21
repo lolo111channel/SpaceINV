@@ -15,15 +15,18 @@ namespace SpaceInv
 
         private Movement _movement;
         private Shooting _shooting;
+        private Fuel _fuel;
 
         private Vector2 _dir = new();
 
         private float _currentAngle = 0.0f;
+        private bool _canMove = true;
 
         private void OnEnable()
         {
             _movement = GetComponent<Movement>();
             _shooting = GetComponent<Shooting>();
+            _fuel = GetComponent<Fuel>();
 
             _moveInput.action.started += Move;
             _moveInput.action.canceled += Move;
@@ -42,13 +45,29 @@ namespace SpaceInv
 
         private void Move(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (_fuel == null)
+            {
+                return;
+            }
+
+            if (_fuel.IsFuelFull())
+            {
+                _canMove = true;
+            }
+
+            if (context.started && _canMove)
             {
                 _dir = Vector2.up;
             }
             else if (context.canceled)
             {
                 _dir = Vector2.zero;
+
+                if (!_fuel.IsFuelFull())
+                {
+                    _canMove = false;
+                }
+
             }
         }
 
@@ -69,7 +88,7 @@ namespace SpaceInv
             Vector3 mousePosDirRelativeToPlayerPos = (mousePos - transform.position).normalized;
             float angle = Mathf.Atan2(mousePosDirRelativeToPlayerPos.y, mousePosDirRelativeToPlayerPos.x) * Mathf.Rad2Deg - 90.0f;
 
-            _currentAngle = Mathf.LerpAngle(_currentAngle, angle, 0.1f);
+            _currentAngle = Mathf.LerpAngle(_currentAngle, angle, 1.0f);
             _movement.SetRotation(_currentAngle);
         }
 
