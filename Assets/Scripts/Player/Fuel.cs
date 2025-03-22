@@ -6,6 +6,9 @@ namespace SpaceInv
 {
     public class Fuel : MonoBehaviour
     {
+        public delegate void FuelDelegate(float fuel);
+        public event FuelDelegate CurrentFuelChanged;
+        
         [SerializeField] private float _maxFuel = 100.0f;
         [SerializeField] private float _currentFuel = 1.0f;
 
@@ -29,11 +32,30 @@ namespace SpaceInv
             return false;
         }
 
+        public bool IsFuelEquelZero()
+        {
+            if (_currentFuel <= 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public float GetMaxFuel() => _maxFuel;
+
         private void OnObjectIsMoving()
         {
+            if (IsFuelEquelZero())
+            {
+                return;
+            }
+
             _currentFuel -= _fuelLossRate * Time.deltaTime;
             _canRegeneration = false;
             _timeToStartRegenerationTime = 0.0f;
+
+            CurrentFuelChanged?.Invoke(_currentFuel);
         }
 
         private void OnEnable()
@@ -62,6 +84,7 @@ namespace SpaceInv
             if (_currentFuel <= _maxFuel && _canRegeneration)
             {
                 _currentFuel += _fuelRegenerationSpeed * Time.deltaTime;
+                CurrentFuelChanged?.Invoke(_currentFuel);
             }
         }
 

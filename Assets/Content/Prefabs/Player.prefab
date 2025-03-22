@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 6320585398202337845}
   - component: {fileID: 3891430777493214964}
   - component: {fileID: 5926813474548392305}
-  - component: {fileID: 2692305798044587775}
   - component: {fileID: 155604422176446706}
+  - component: {fileID: 2692305798044587775}
   - component: {fileID: 1868303242387457672}
   - component: {fileID: 881289858252064106}
   - component: {fileID: 5848314699390624171}
@@ -203,19 +203,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2692305798044587775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5726531925192806057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd696ccb0decbf468a7b53bda97be6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealthComponent: {fileID: 2183981081565787692}
 --- !u!114 &155604422176446706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +233,20 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2692305798044587775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726531925192806057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd696ccb0decbf468a7b53bda97be6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthComponent: {fileID: 2183981081565787692}
+  Fuel: {fileID: 4057563294451634281}
 --- !u!114 &1868303242387457672
 MonoBehaviour:
   m_ObjectHideFlags: 0

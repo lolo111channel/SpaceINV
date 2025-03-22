@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpaceInv
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] int _nextLevelId = 0;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Destroy(collision.gameObject);
+            SceneManager.LoadScene(_nextLevelId);
         }
     }
 

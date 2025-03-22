@@ -28,10 +28,6 @@ namespace SpaceInv
             _shooting = GetComponent<Shooting>();
             _fuel = GetComponent<Fuel>();
 
-            _moveInput.action.started += Move;
-            _moveInput.action.canceled += Move;
-
-
         }
 
         private void Shoot(InputAction.CallbackContext context)
@@ -43,7 +39,7 @@ namespace SpaceInv
             _shooting.Shoot();
         }
 
-        private void Move(InputAction.CallbackContext context)
+        private void Move(float inputVal)
         {
             if (_fuel == null)
             {
@@ -55,24 +51,34 @@ namespace SpaceInv
                 _canMove = true;
             }
 
-            if (context.started && _canMove)
+            if (_fuel.IsFuelEquelZero())
+            {
+                _canMove = false;
+            }
+
+
+
+            if (inputVal > 0.0f && _canMove)
             {
                 _dir = Vector2.up;
-            }
-            else if (context.canceled)
+                return;
+            }    
+             
+
+
+            _dir = Vector2.zero;
+            if (!_fuel.IsFuelFull())
             {
-                _dir = Vector2.zero;
-
-                if (!_fuel.IsFuelFull())
-                {
-                    _canMove = false;
-                }
-
+                _canMove = false;
             }
         }
 
         private void Update()
         {
+            float _moveInputVal = _moveInput.action.ReadValue<float>();
+            Move(_moveInputVal);
+            
+
             float shootInputVal = _shootInput.action.ReadValue<float>();
             if (shootInputVal > 0.0f)
             {

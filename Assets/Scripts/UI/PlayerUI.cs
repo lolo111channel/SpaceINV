@@ -10,7 +10,7 @@ namespace SpaceInv
         public Player Player;
 
         [SerializeField] private TMP_Text _healthCounterTxt;
-
+        [SerializeField] private TMP_Text _fuelCounterTxt;
 
         private void OnEnable()
         {
@@ -24,8 +24,20 @@ namespace SpaceInv
                 return;
             }
 
-            Player.HealthComponent.HealthChanged += HealthChanged;
+            if (Player.Fuel == null)
+            {
+                return;
+            }
 
+            Player.HealthComponent.HealthChanged += HealthChanged;
+            Player.Fuel.CurrentFuelChanged += CurrentFuelChanged;
+        }
+
+        private void CurrentFuelChanged(float fuel)
+        {
+            int roundedFuel = Mathf.RoundToInt(fuel);
+
+            _fuelCounterTxt.text = $"Fuel: {roundedFuel}/{Player.Fuel.GetMaxFuel()}";
         }
 
         private void HealthChanged(int currentHealth)
