@@ -9,6 +9,11 @@ namespace SpaceInv
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (LevelsManager.Instance != null)
+            {
+                LevelsManager.Instance.UnlockLevel(_nextLevelId);
+            }
+
             SceneManager.LoadScene(_nextLevelId);
         }
     }

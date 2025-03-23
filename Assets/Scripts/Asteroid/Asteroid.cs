@@ -57,7 +57,7 @@ namespace SpaceInv
                 Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
                 if (health != null && rb != null)
                 {
-                    int damage = Mathf.RoundToInt(rb.linearVelocity.x + rb.linearVelocity.y) / 2;
+                    int damage = Mathf.RoundToInt(Mathf.Abs(rb.linearVelocity.x) + Mathf.Abs(rb.linearVelocity.y)) / 2;
                     if (damage < 0)
                     {
                         damage = damage * -1;

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace SpaceInv
 {
@@ -83,6 +84,12 @@ namespace SpaceInv
             if (shootInputVal > 0.0f)
             {
                 _shooting.Shoot();
+            }
+
+            //Debug Stuff
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(0);
             }
         }
 
