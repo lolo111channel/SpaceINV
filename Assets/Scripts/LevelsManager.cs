@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -38,6 +39,11 @@ namespace SpaceInv
             return _unlockedLevels.Last<int>();
         }
 
+        public List<int> GetUnlockedLevels()
+        {
+            return _unlockedLevels;
+        }
+
         private void Awake()
         {
             if (Instance == null)
@@ -45,8 +51,13 @@ namespace SpaceInv
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+            SaveSystem.Instance.GameLoaded += GameLoaded;
         }
 
+        private void GameLoaded(SaveObject saveObject)
+        {
+            _unlockedLevels = saveObject.UnlockedLevels;
+        }
     }
 
 }

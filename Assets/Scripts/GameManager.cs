@@ -14,6 +14,11 @@ namespace SpaceInv
                 LevelsManager.Instance.UnlockLevel(_nextLevelId);
             }
 
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.Save();
+            }
+
             SceneManager.LoadScene(_nextLevelId);
         }
     }
