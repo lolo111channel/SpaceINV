@@ -23,10 +23,14 @@ namespace SpaceInv
 
         private void Start()
         {
+            float randomRot = Random.Range(-360f, 360f);
+            transform.Rotate(new(0,0,randomRot));
+
             if (!_canMove)
             {
                 _rb.bodyType = RigidbodyType2D.Kinematic;
             }
+
         }
 
         private void FixedUpdate()
