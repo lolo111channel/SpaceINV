@@ -12,6 +12,9 @@ namespace SpaceInv
         [SerializeField] private TMP_Text _healthCounterTxt;
         [SerializeField] private TMP_Text _fuelCounterTxt;
 
+        [SerializeField] private GameObject _deathScreen;
+        
+
         private void OnEnable()
         {
             if (Player == null)
@@ -30,7 +33,14 @@ namespace SpaceInv
             }
 
             Player.HealthComponent.HealthChanged += HealthChanged;
+            Player.HealthComponent.Death += Death;
+
             Player.Fuel.CurrentFuelChanged += CurrentFuelChanged;
+        }
+
+        private void Death()
+        {
+            _deathScreen.SetActive(true);
         }
 
         private void CurrentFuelChanged(float fuel)
@@ -50,6 +60,8 @@ namespace SpaceInv
 
             _healthCounterTxt.text = $"Health: { currentHealth }";
         }
+
+
     }
 
 }

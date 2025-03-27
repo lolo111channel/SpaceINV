@@ -27,6 +27,17 @@ namespace SpaceInv
         {
             Application.Quit();
         }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void BackToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 
 }

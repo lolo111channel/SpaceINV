@@ -6,6 +6,7 @@ namespace SpaceInv
     {
         public HealthComponent HealthComponent;
         public Fuel Fuel;
+        public PlayerArrow PlayerArrow;
     }
 
 }
