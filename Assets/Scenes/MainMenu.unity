@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343150a795d99ce40b8df397e91a5cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveSystem: {fileID: 1006073021}
   _unlockedLevels: 03000000
 --- !u!1 &424007169
 GameObject:

@@ -11,7 +11,8 @@ namespace SpaceInv
         public delegate void UnlockedLevels();
         public event UnlockedLevels NewLevelUnlocked;
 
-        public static LevelsManager Instance { get; private set; }   
+        public static LevelsManager Instance { get; private set; }
+        [SerializeField] private SaveSystem _saveSystem;
         [SerializeField] private List<int> _unlockedLevels = new();
 
         public void UnlockLevel(int id)
@@ -51,7 +52,12 @@ namespace SpaceInv
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            SaveSystem.Instance.GameLoaded += GameLoaded;
+           
+        }
+
+        private void Start()
+        {
+            _saveSystem.GameLoaded += GameLoaded;
         }
 
         private void GameLoaded(SaveObject saveObject)
