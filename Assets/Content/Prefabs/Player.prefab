@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 8579900622514052433}
   - component: {fileID: 4057563294451634281}
   - component: {fileID: 1578904864583510758}
+  - component: {fileID: 2998291739517154826}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -369,6 +370,7 @@ MonoBehaviour:
   HealthComponent: {fileID: 2183981081565787692}
   Fuel: {fileID: 4057563294451634281}
   PlayerArrow: {fileID: 1578904864583510758}
+  PlayerPauseGame: {fileID: 2998291739517154826}
 --- !u!114 &1868303242387457672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,3 +500,17 @@ MonoBehaviour:
   CurrentIdObject: 0
   _arrow: {fileID: 2555129979179962066}
   _objectsTheArrowLookingAt: []
+--- !u!114 &2998291739517154826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726531925192806057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad96e6efd0af0c4283d916e9a05701b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseInput: {fileID: 7190953242714690351, guid: a92df5ccc9876b74f8015221d9d694c2, type: 3}
+  _unpauseInput: {fileID: 1991169597432587907, guid: a92df5ccc9876b74f8015221d9d694c2, type: 3}

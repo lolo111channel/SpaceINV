@@ -36,6 +36,7 @@ namespace SpaceInv
         public void BackToMainMenu()
         {
             SceneManager.LoadScene(0);
+            Time.timeScale = 1.0f;
         }
 
     }

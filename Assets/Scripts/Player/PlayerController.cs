@@ -85,12 +85,6 @@ namespace SpaceInv
             {
                 _shooting.Shoot();
             }
-
-            //Debug Stuff
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                SceneManager.LoadScene(0);
-            }
         }
 
         private void FixedUpdate()

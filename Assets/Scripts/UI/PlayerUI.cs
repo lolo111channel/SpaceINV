@@ -13,7 +13,19 @@ namespace SpaceInv
         [SerializeField] private TMP_Text _fuelCounterTxt;
 
         [SerializeField] private GameObject _deathScreen;
+        [SerializeField] private GameObject _pauseMenu;
+
         
+        public void UnpauseGameButtonFunc()
+        {
+            if (Player == null)
+            {
+                return;
+            }
+
+            Player.PlayerPauseGame.UnpauseGame();
+        }
+
 
         private void OnEnable()
         {
@@ -32,11 +44,37 @@ namespace SpaceInv
                 return;
             }
 
+            if (Player.PlayerPauseGame == null)
+            {
+                return;
+            }
+
+
+
             Player.HealthComponent.HealthChanged += HealthChanged;
             Player.HealthComponent.Death += Death;
 
             Player.Fuel.CurrentFuelChanged += CurrentFuelChanged;
+
+            Player.PlayerPauseGame.PlayerPauseOrUnpauseGame += PlayerPauseOrUnpauseGame;
         }
+
+
+        private void OnDisable()
+        {
+            Player.HealthComponent.HealthChanged -= HealthChanged;
+            Player.HealthComponent.Death -= Death;
+
+            Player.Fuel.CurrentFuelChanged -= CurrentFuelChanged;
+
+            Player.PlayerPauseGame.PlayerPauseOrUnpauseGame -= PlayerPauseOrUnpauseGame;
+        }
+
+        private void PlayerPauseOrUnpauseGame(bool gamePause)
+        {
+            _pauseMenu.SetActive(gamePause);
+        }
+
 
         private void Death()
         {
