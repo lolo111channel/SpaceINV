@@ -35,7 +35,7 @@ namespace SpaceInv
 
         private void FixedUpdate()
         {
-            if (_canMove)
+            if (_canMove && _movement != null)
             {
                 _movement.Move(_dir);
             }

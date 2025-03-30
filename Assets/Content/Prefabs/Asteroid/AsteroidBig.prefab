@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1437176075429896045}
   - component: {fileID: 5139899777859955245}
   - component: {fileID: 8768608832973770645}
-  - component: {fileID: 1740372998151590440}
   - component: {fileID: 1941651336340625348}
   m_Layer: 0
   m_Name: AsteroidBig
@@ -250,7 +249,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364110687144765525}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -269,27 +268,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1740372998151590440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4364110687144765525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e729e8c1428b60446b617e4f066b5813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementSpeed: 2
-  _maxMovementSpeed: 100
-  _acceleration: 0.1
-  _friction: 0.1
-  _rb: {fileID: 8768608832973770645}
-  _rotationSpeed: 1
-  _rotationDisable: 1
-  _dashSpeed: 25
-  _dashTime: 1
 --- !u!114 &1941651336340625348
 MonoBehaviour:
   m_ObjectHideFlags: 0
