@@ -25808,6 +25808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextLevelId: 4
+  _canSave: 1
 --- !u!1001 &1710940427
 PrefabInstance:
   m_ObjectHideFlags: 0
