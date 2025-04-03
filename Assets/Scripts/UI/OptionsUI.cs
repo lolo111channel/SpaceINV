@@ -44,7 +44,7 @@ namespace SpaceInv
                 _textResolutions.Add(text);
             }
 
-
+            _resolutionDropdown.ClearOptions();
             _resolutionDropdown.AddOptions(_textResolutions);
 
             Resolution currentResolution = Screen.currentResolution;
