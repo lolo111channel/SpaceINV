@@ -30,21 +30,17 @@ namespace SpaceInv
             _fullscreenButton.onClick?.AddListener(Fullscreen);
             _resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
-            Fullscreen();
-        }
-
-
-        private void OnDisable()
-        {
-            _fullscreenButton.onClick?.RemoveListener(Fullscreen);
-        }
-
-        private void Awake()
-        {
             _resolutions = Screen.resolutions;
             foreach (var res in _resolutions)
             {
-                string text = $"{ res.width } x {res.height}";
+                string text = $"{res.width} x {res.height}";
+
+                if (_textResolutions.Contains(text))
+                {
+                    //return;
+                }
+
+
                 _textResolutions.Add(text);
             }
 
@@ -55,6 +51,18 @@ namespace SpaceInv
             _currentResolutionID = _textResolutions.FindIndex(x => x == $"{currentResolution.width} x {currentResolution.height}");
 
             _resolutionDropdown.value = _currentResolutionID;
+        }
+
+
+        private void OnDisable()
+        {
+            _fullscreenButton.onClick?.RemoveListener(Fullscreen);
+        }
+
+        private void Awake()
+        {
+
+            Fullscreen();
         }
 
 
