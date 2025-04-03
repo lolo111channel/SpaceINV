@@ -37,7 +37,7 @@ namespace SpaceInv
 
                 if (_textResolutions.Contains(text))
                 {
-                    //return;
+                    continue;
                 }
 
 
