@@ -31,6 +31,7 @@ namespace SpaceInv
             _resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
             _resolutions = Screen.resolutions;
+            List<Resolution> _newResolutions = new();
             foreach (var res in _resolutions)
             {
                 string text = $"{res.width} x {res.height}";
@@ -40,15 +41,23 @@ namespace SpaceInv
                     continue;
                 }
 
-
+                _newResolutions.Add(res);
                 _textResolutions.Add(text);
             }
 
             _resolutionDropdown.ClearOptions();
             _resolutionDropdown.AddOptions(_textResolutions);
+            _resolutions = _newResolutions.ToArray();
+
 
             Resolution currentResolution = Screen.currentResolution;
             _currentResolutionID = _textResolutions.FindIndex(x => x == $"{currentResolution.width} x {currentResolution.height}");
+            
+            if (_currentResolutionID <= -1)
+            {
+                _currentResolutionID = _textResolutions.Count - 1;
+            }
+
 
             _resolutionDropdown.value = _currentResolutionID;
         }
