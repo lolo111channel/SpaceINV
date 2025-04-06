@@ -14,6 +14,8 @@ namespace SpaceInv
 
         [SerializeField] private float _cameraShakePower = 1.5f;
 
+        [SerializeField] private GameObject _playerShipBoosterSprite;
+
         private Movement _movement;
         private Shooting _shooting;
         private Fuel _fuel;
@@ -61,11 +63,21 @@ namespace SpaceInv
 
             if (inputVal > 0.0f && _canMove)
             {
+                if (_playerShipBoosterSprite != null)
+                {
+                    _playerShipBoosterSprite.SetActive(true);
+                }
+
                 _dir = Vector2.up;
                 return;
-            }    
-             
+            } 
 
+
+
+            if (_playerShipBoosterSprite != null)
+            {
+                _playerShipBoosterSprite.SetActive(false);
+            }
 
             _dir = Vector2.zero;
             if (!_fuel.IsFuelFull())
