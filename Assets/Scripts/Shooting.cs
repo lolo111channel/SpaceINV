@@ -4,6 +4,9 @@ namespace SpaceInv
 {
     public class Shooting : MonoBehaviour
     {
+        public delegate void Shot();
+        public event Shot ObjectShot;
+
         [SerializeField] private int _damage = 1;
         [SerializeField] private float _bulletSpeed = 5.0f;
         [SerializeField] private float _shootingSpeed = 1.0f;
@@ -51,6 +54,8 @@ namespace SpaceInv
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y);
 
                 _canShoot = false;
+
+                ObjectShot?.Invoke();
             }
         }
 
