@@ -582,7 +582,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b48e9afd545960844a0ce7d4efc0ba2c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -705,6 +705,7 @@ MonoBehaviour:
   _bulletSpawn: {fileID: 6862044495481509552}
   _rb: {fileID: 3891430777493214964}
   _setManuallyCanShoot: 0
+  _movement: {fileID: 1868303242387457672}
 --- !u!114 &5848314699390624171
 MonoBehaviour:
   m_ObjectHideFlags: 0

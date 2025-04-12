@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: lolo111Code&KubaJaky
   productName: SpaceINV
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -39,10 +39,8 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos:
-  - logo: {fileID: -7436636364287518490, guid: df206cda4c823a24dbc0f03cfa6c384e, type: 3}
-    duration: 7.21
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: df206cda4c823a24dbc0f03cfa6c384e, type: 3}
+  m_SplashScreenLogos: []
+  m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080

@@ -23,7 +23,7 @@ namespace SpaceInv
         [SerializeField] private float _dashTime = 1.0f;
 
         private float _angle = 0.0f;
-        private Vector2 _currentLinear = new();
+        [SerializeField] private Vector2 _currentLinear = new();
 
         private float _currentMovementSpeed = 1.0f;
         private float _dashProgressToStop = 0.0f;
@@ -38,13 +38,13 @@ namespace SpaceInv
             if (dir != Vector2.zero)
             {
                 OnObjectIsMoving?.Invoke();
-                _currentLinear.x = Mathf.Lerp(_rb.linearVelocity.x, rotatedDir.x * _currentMovementSpeed, _acceleration);
-                _currentLinear.y = Mathf.Lerp(_rb.linearVelocity.y, rotatedDir.y * _currentMovementSpeed, _acceleration);
+                _currentLinear.x = Mathf.Lerp(_currentLinear.x, rotatedDir.x * _currentMovementSpeed, _acceleration);
+                _currentLinear.y = Mathf.Lerp(_currentLinear.y, rotatedDir.y * _currentMovementSpeed, _acceleration);
                 return;
             }
 
-            _currentLinear.x = Mathf.Lerp(_rb.linearVelocity.x, 0.0f, _friction);
-            _currentLinear.y = Mathf.Lerp(_rb.linearVelocity.y, 0.0f, _friction);
+            _currentLinear.x = Mathf.Lerp(_currentLinear.x, 0.0f, _friction);
+            _currentLinear.y = Mathf.Lerp(_currentLinear.y, 0.0f, _friction);
 
         }
 
@@ -81,6 +81,13 @@ namespace SpaceInv
         {
             return gameObject.transform.TransformDirection(dir);
         }
+
+        public void SetCurrentLinear(Vector2 newVec)
+        {
+            _currentLinear = newVec;
+        }
+
+        public Vector2 GetCurrentLinear() => _currentLinear;
 
         private void Awake()
         {

@@ -158,9 +158,6 @@ namespace SpaceInv
                 newMax = max + (min * -1);
                 newCurrentVal = currentValue + (min * -1);
             }
-            Debug.Log(newMin);
-            Debug.Log(newMax);
-            Debug.Log(newCurrentVal);
 
             float percentage = (newCurrentVal / newMax) * 100f;
 

@@ -1280,6 +1280,7 @@ MonoBehaviour:
   _rotationDisable: 0
   _dashSpeed: 25
   _dashTime: 1
+  _currentLinear: {x: 0, y: 0}
 --- !u!50 &277574507
 Rigidbody2D:
   serializedVersion: 5
@@ -5067,7 +5068,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Title
+  m_text: 'Space
+
+    INV'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e259bb58460d40741ba93d46e8c006a5, type: 2}
   m_sharedMaterial: {fileID: -1017171942559606407, guid: e259bb58460d40741ba93d46e8c006a5, type: 2}

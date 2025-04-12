@@ -26,10 +26,6 @@ namespace SpaceInv
             JsonUtility.FromJsonOverwrite(json, saveObject);
 
             Debug.Log("Game Loaded");
-            foreach (var el in saveObject.UnlockedLevels)
-            {
-                Debug.Log(el);
-            }
             GameLoaded?.Invoke(saveObject);
         }
 

@@ -8304,6 +8304,10 @@ PrefabInstance:
       propertyPath: '_objectsTheArrowLookingAt.Array.data[4]'
       value: 
       objectReference: {fileID: 1043855228}
+    - target: {fileID: 1868303242387457672, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
+      propertyPath: _currentLinear.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3069889717703262791, guid: ee9a68220a17fe149ae9e5242ba6182e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -183.93

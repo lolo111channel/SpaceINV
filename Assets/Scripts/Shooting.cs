@@ -16,8 +16,10 @@ namespace SpaceInv
         [SerializeField] private Transform _bulletSpawn;
         [SerializeField] private Rigidbody2D _rb;
 
-        [SerializeField] private bool _setManuallyCanShoot = false; 
-        
+        [SerializeField] private bool _setManuallyCanShoot = false;
+
+        [SerializeField] private Movement _movement;
+
         private bool _canShoot = true;
         private float _canShootProgress = 0.0f;
         private float _canShootProgressMax = 100.0f;
@@ -50,9 +52,10 @@ namespace SpaceInv
 
 
                 rotatedDir = (rotatedDir * -1) * _repulse;
-          
-                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y);
 
+                //_rb.linearVelocity = new Vector2(_rb.linearVelocity.x + rotatedDir.x, _rb.linearVelocity.y + rotatedDir.y); -> it doesn't work after building the game.
+
+                _movement.SetCurrentLinear(new Vector2(_movement.GetCurrentLinear().x + rotatedDir.x, _movement.GetCurrentLinear().y + rotatedDir.y));
                 _canShoot = false;
 
                 ObjectShot?.Invoke();
