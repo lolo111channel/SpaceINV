@@ -80,10 +80,6 @@ namespace SpaceInv
             }
 
             _dir = Vector2.zero;
-            if (!_fuel.IsFuelFull())
-            {
-                _canMove = false;
-            }
         }
 
         private void Update()

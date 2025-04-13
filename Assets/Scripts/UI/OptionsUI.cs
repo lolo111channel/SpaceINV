@@ -33,11 +33,11 @@ namespace SpaceInv
         private List<String> _textResolutions = new();
         private int _currentResolutionID = 0;
 
-        public static float MusicVolume = 0.0f;
-        public static float PreviouseMusicVolume = 0.0f;
+        public static float MusicVolume = 1.0f;
+        public static float PreviouseMusicVolume = 1.0f;
 
-        public static float SFXVolume = 0.0f;
-        public static float PreviouseSFXVolume = 0.0f;
+        public static float SFXVolume = 1.0f;
+        public static float PreviouseSFXVolume = 1.0f;
 
         public void SetMusicVolume(Slider slider)
         {
@@ -51,9 +51,7 @@ namespace SpaceInv
 
         private void OnEnable()
         {
-            _musicSlider.value = MusicVolume;
-            _sfxSlider.value = SFXVolume;
-
+            
             _fullscreenButton.onClick?.AddListener(Fullscreen);
             _resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
@@ -77,7 +75,13 @@ namespace SpaceInv
             _resolutions = _newResolutions.ToArray();
 
 
-            Resolution currentResolution = Screen.currentResolution;
+            MusicVolume = StoringOptionValues.Instance.MusicVolume;
+            SFXVolume = StoringOptionValues.Instance.SoundVolume;
+
+            _musicSlider.value = MusicVolume;
+            _sfxSlider.value = SFXVolume;
+
+            Resolution currentResolution = StoringOptionValues.Instance.Resolution;
             _currentResolutionID = _textResolutions.FindIndex(x => x == $"{currentResolution.width} x {currentResolution.height}");
             
             if (_currentResolutionID <= -1)
@@ -97,28 +101,39 @@ namespace SpaceInv
 
         private void Awake()
         {
-
-            Fullscreen();
+            _isFullscreen = StoringOptionValues.Instance.Fullscreen;
+            Screen.fullScreen = _isFullscreen;
+            if (_isFullscreen)
+            {
+                _fullscreenButtonTxt.text = "ON";
+            }
+            else
+            {
+                _fullscreenButtonTxt.text = "OFF";
+            }
         }
 
         private void Update()
         {
 
-            _musicSliderText.text = $"{ChangeVolumeDBToPercentage(_musicSlider.minValue, _musicSlider.maxValue, _musicSlider.value)}%";
-            _sfxSliderText.text = $"{ChangeVolumeDBToPercentage(_sfxSlider.minValue, _sfxSlider.maxValue, _sfxSlider.value)}%";
+            _musicSliderText.text = $"{ChangeVolumeDBToPercentage( _musicSlider.value)}%";
+            _sfxSliderText.text = $"{ChangeVolumeDBToPercentage(_sfxSlider.value)}%";
 
             if (!Mathf.Approximately(MusicVolume, PreviouseMusicVolume))
             {
-                _audioMixer.SetFloat("music", MusicVolume);
+                _audioMixer.SetFloat("music", Mathf.Log10(MusicVolume) * 20);
             }
 
             if (!Mathf.Approximately(SFXVolume, PreviouseSFXVolume))
             {
-                _audioMixer.SetFloat("sfx", SFXVolume);
+                _audioMixer.SetFloat("sfx", Mathf.Log10(SFXVolume) * 20);
             }
 
             PreviouseMusicVolume = MusicVolume;
             PreviouseSFXVolume = SFXVolume;
+
+            StoringOptionValues.Instance.MusicVolume = MusicVolume;
+            StoringOptionValues.Instance.SoundVolume = SFXVolume;
         }
 
 
@@ -135,32 +150,22 @@ namespace SpaceInv
                 _isFullscreen = true;
             }
 
-
-                Screen.fullScreen = _isFullscreen;
+            StoringOptionValues.Instance.Fullscreen = _isFullscreen;
+            Screen.fullScreen = _isFullscreen;
         }
         private void SetResolution(int index)
         {
             Resolution currentResolution = _resolutions[index];
+            StoringOptionValues.Instance.Resolution = currentResolution;
 
             Screen.SetResolution(currentResolution.width, currentResolution.height, _isFullscreen);
         }
 
 
-        private int ChangeVolumeDBToPercentage(float min, float max, float currentValue)
+        private int ChangeVolumeDBToPercentage(float currentValue)
         {
-            float newMin = 0.0f;
-            float newMax = 0.0f;
-            float newCurrentVal = 0.0f;
-
-            if (min < 0)
-            {
-                newMin = min + (min * -1);
-                newMax = max + (min * -1);
-                newCurrentVal = currentValue + (min * -1);
-            }
-
-            float percentage = (newCurrentVal / newMax) * 100f;
-
+        
+            float percentage = currentValue * 100;
             return Mathf.RoundToInt(percentage);
 
         }

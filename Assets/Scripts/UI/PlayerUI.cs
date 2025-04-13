@@ -85,6 +85,11 @@ namespace SpaceInv
         {
             int roundedFuel = Mathf.RoundToInt(fuel);
 
+            if (fuel > 100)
+            {
+                fuel = 100;
+            }
+
             _fuelCounterTxt.text = $"Fuel: {roundedFuel}/{Player.Fuel.GetMaxFuel()}";
         }
 

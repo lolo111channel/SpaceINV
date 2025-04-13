@@ -685,6 +685,7 @@ MonoBehaviour:
   _rotationDisable: 0
   _dashSpeed: 25
   _dashTime: 1
+  _currentLinear: {x: 0, y: 0}
 --- !u!114 &881289858252064106
 MonoBehaviour:
   m_ObjectHideFlags: 0
