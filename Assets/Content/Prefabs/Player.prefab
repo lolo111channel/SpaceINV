@@ -778,7 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxFuel: 100
   _currentFuel: 1
-  _fuelRegenerationSpeed: 10
+  _fuelRegenerationSpeed: 20
   _fuelLossRate: 50
   _timeToStartRegeneration: 0.15
 --- !u!114 &1578904864583510758

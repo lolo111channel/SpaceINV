@@ -79,6 +79,11 @@ namespace SpaceInv
                 _playerShipBoosterSprite.SetActive(false);
             }
 
+            if (!_fuel.IsFuelFull())
+            {
+                _canMove = false;
+            }
+
             _dir = Vector2.zero;
         }
 
